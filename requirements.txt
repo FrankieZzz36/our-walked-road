@@ -1,0 +1,8 @@
+# 我们一起走过的路 · 运行依赖
+# 本机 Anaconda 环境：D:\anaconda\python.exe
+#
+# 安装：
+#   D:\anaconda\python.exe -m pip install -r requirements.txt
+#
+# 说明：PySide6 是元包，会同时安装 QtWebEngine（PySide6-Addons）。
+PySide6==6.11.0

@@ -1,0 +1,18 @@
+__pycache__/
+*.py[cod]
+.idea/
+.venv/
+venv/
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# 本地隐私素材与密钥，不发布到公开仓库
+private/
+web/local-key.js
+*.xlsx
+
+# 网易云 NCM 加密源与同名原始音频，不发布
+许嵩,何曼婷 - 素颜.mp3
+*.ncm

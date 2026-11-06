@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#030512" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>我们一起走过的路 · 黄道十二宫</title>
+  <script>
+    (function () {
+      var protocol = window.location.protocol;
+      var unlocked = false;
+      try {
+        unlocked = Boolean(window.sessionStorage.getItem("ourroad.dataKey"));
+      } catch (error) {
+        unlocked = false;
+      }
+      if ((protocol === "http:" || protocol === "https:") && !unlocked) {
+        document.documentElement.classList.add("is-locked");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ── 访问密码 ────────────────────────────────────────── -->
+  <div class="lock" id="lockScreen">
+    <form class="lock__panel" id="lockForm" novalidate>
+      <input
+        type="text"
+        name="username"
+        autocomplete="username"
+        value="guest"
+        hidden
+      />
+      <span class="lock__mark" aria-hidden="true">✦</span>
+      <p class="lock__eyebrow">THE ROAD WE WALKED TOGETHER</p>
+      <h1 class="lock__title">我们一起走过的路</h1>
+      <p class="lock__lead">这段路只对受邀的人开放<br />请输入访问密码</p>
+
+      <label class="lock__field">
+        <span class="lock__label">访问密码</span>
+        <input
+          class="lock__input"
+          id="lockInput"
+          type="password"
+          autocomplete="current-password"
+          spellcheck="false"
+          maxlength="128"
+        />
+      </label>
+
+      <button class="lock__submit" id="lockSubmit" type="submit">进 入</button>
+      <p class="lock__error" id="lockError" role="alert" aria-live="polite"></p>
+      <p class="lock__foot">PRIVATE GARDEN · MMXXVI</p>
+    </form>
+  </div>
+
+  <div class="app" id="app">
+    <!-- ── 背景音乐 ──────────────────────────────────────── -->
+    <audio id="bgm" preload="auto" loop hidden>
+      <source src="assets/suyan.ogg" type="audio/ogg" />
+      <source src="assets/suyan.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- ── 背景：开场视频 / 循环动态背景 ───────────────────── -->
+    <div class="backdrop" aria-hidden="true">
+      <video
+        id="bgVideo"
+        class="video video--bg"
+        poster="assets/poster.jpg"
+        muted
+        loop
+        playsinline
+        preload="auto"
+      >
+        <source src="assets/star_sea.webm" type="video/webm" />
+        <source src="assets/star_sea.mp4" type="video/mp4" />
+      </video>
+      <video
+        id="introVideo"
+        class="video video--intro"
+        poster="assets/poster.jpg"
+        muted
+        playsinline
+        preload="auto"
+      >
+        <source src="assets/star_sea.webm" type="video/webm" />
+        <source src="assets/star_sea.mp4" type="video/mp4" />
+      </video>
+      <div class="backdrop__grade"></div>
+      <div class="backdrop__focus"></div>
+      <div class="backdrop__vignette"></div>
+      <div class="backdrop__noise"></div>
+    </div>
+
+    <!-- ── 标题 ──────────────────────────────────────────── -->
+    <header class="brand" aria-label="我们一起走过的路">
+      <span class="brand__mark" aria-hidden="true"><i>✦</i></span>
+      <div class="brand__copy">
+        <p class="brand__eyebrow">THE ROAD WE WALKED TOGETHER</p>
+        <h1>我们一起走过的路</h1>
+      </div>
+    </header>
+
+    <!-- ── 背景音乐开关 ──────────────────────────────────── -->
+    <button
+      class="music"
+      id="musicToggle"
+      type="button"
+      tabindex="-1"
+      aria-pressed="true"
+      aria-label="暂停背景音乐：素颜"
+    >
+      <span class="music__icon" aria-hidden="true">
+        <span class="music__eq"><i></i><i></i><i></i><i></i></span>
+        <span class="music__pause"><i></i><i></i></span>
+      </span>
+      <span class="music__copy">
+        <b>素颜</b>
+        <small>许嵩 · 何曼婷</small>
+      </span>
+    </button>
+
+    <!-- ── 主画面：黄道时钟 ───────────────────────────────── -->
+    <main class="stage">
+      <figure class="portrait" id="portrait" aria-label="黄道十二宫时钟">
+        <div class="portrait__halo" aria-hidden="true"></div>
+
+        <img
+          class="portrait__image"
+          src="assets/zodiac_clock.jpg"
+          alt="黄道十二宫时钟"
+          draggable="false"
+        />
+        <div class="portrait__shade" aria-hidden="true"></div>
+        <div class="portrait__frame" aria-hidden="true"></div>
+
+        <button
+          class="hotspot hotspot--pisces"
+          type="button"
+          data-sign="pisces"
+          aria-label="查看双鱼座人物档案，罗马数字 I"
+        >
+          <span class="hotspot__pulse" aria-hidden="true"></span>
+          <span class="hotspot__wash" aria-hidden="true"></span>
+          <span class="hotspot__ring" aria-hidden="true"></span>
+          <span class="hotspot__dot" aria-hidden="true"></span>
+          <span class="hotspot__tip">
+            <b>I</b><span>双鱼座 · 人物档案</span><i>↗</i>
+          </span>
+        </button>
+
+        <button
+          class="hotspot hotspot--leo"
+          type="button"
+          data-sign="leo"
+          aria-label="查看狮子座人物档案，罗马数字 VIII"
+        >
+          <span class="hotspot__pulse" aria-hidden="true"></span>
+          <span class="hotspot__wash" aria-hidden="true"></span>
+          <span class="hotspot__ring" aria-hidden="true"></span>
+          <span class="hotspot__dot" aria-hidden="true"></span>
+          <span class="hotspot__tip">
+            <b>VIII</b><span>狮子座 · 人物档案</span><i>↗</i>
+          </span>
+        </button>
+      </figure>
+    </main>
+
+    <!-- ── 操作提示 / 跳过开场 ─────────────────────────────── -->
+    <p class="hint" id="hint">
+      <span aria-hidden="true">✦</span>
+      点击星盘上的 I / VIII 星徽，查阅人物档案
+      <span aria-hidden="true">✦</span>
+    </p>
+
+    <button class="skip" id="skipIntro" type="button" aria-label="跳过开场动画">
+      <span>跳过开场</span>
+      <i aria-hidden="true">›</i>
+    </button>
+
+    <!-- 自动播放被拦截时才会出现 -->
+    <button class="enter-gate" id="enterGate" type="button">
+      <span class="enter-gate__ring" aria-hidden="true"></span>
+      <span class="enter-gate__eyebrow">THE STARS ARE WAITING</span>
+      <strong>轻触 · 进入星海</strong>
+      <span class="enter-gate__sub">TAP TO BEGIN</span>
+    </button>
+
+    <!-- ── 人物档案弹窗 ───────────────────────────────────── -->
+    <div class="modal" id="modal" aria-hidden="true">
+      <div class="modal__scrim" data-close></div>
+
+      <article
+        class="modal__panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalName"
+        aria-describedby="modalDesc"
+      >
+        <button class="modal__close" type="button" data-close aria-label="关闭人物档案">
+          <span aria-hidden="true"></span>
+        </button>
+
+        <div class="modal__side">
+          <p class="modal__archive" id="modalArchive">ZODIAC ARCHIVE</p>
+
+          <div class="modal__sigil" aria-hidden="true">
+            <span class="sigil-ring sigil-ring--outer"></span>
+            <span class="sigil-ring sigil-ring--middle"></span>
+            <span class="sigil-ring sigil-ring--inner"></span>
+            <svg class="modal__constellation" id="modalConstellation" viewBox="0 0 220 190"></svg>
+            <div class="modal__portrait-shell">
+              <img
+                class="modal__portrait"
+                id="modalPortrait"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                alt=""
+              />
+              <span class="modal__portrait-shade"></span>
+            </div>
+            <span class="modal__glyph" id="modalGlyph">✦</span>
+          </div>
+
+          <div class="modal__side-foot">
+            <p class="modal__coords" id="modalCoords">—</p>
+            <p class="modal__element" id="modalElement">—</p>
+          </div>
+        </div>
+
+        <div class="modal__content">
+          <p class="modal__sign" id="modalSign">黄道档案</p>
+          <h2 id="modalName">—</h2>
+          <p class="modal__title" id="modalTitle">—</p>
+
+          <blockquote class="modal__quote" id="modalQuote"></blockquote>
+
+          <div class="modal__tags" id="modalTags"></div>
+
+          <dl class="modal__stats" id="modalStats"></dl>
+
+          <p class="modal__desc" id="modalDesc"></p>
+
+          <div class="modal__bond">
+            <span>命定星轨</span>
+            <p id="modalBond"></p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <noscript>
+    <p class="noscript">请启用 JavaScript，以进入我们一起走过的路。</p>
+  </noscript>
+
+  <script>
+    if (window.location.protocol === "file:") {
+      document.write('<script src="local-key.js"><\/script>');
+    }
+  </script>
+  <script src="assets/enc/profiles.enc.js"></script>
+  <script src="assets/enc/portraits.enc.js"></script>
+  <script src="private-crypto.js"></script>
+  <script src="lock.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

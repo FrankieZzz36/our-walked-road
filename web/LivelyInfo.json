@@ -1,0 +1,14 @@
+{
+  "AppVersion": "1.0.0.0",
+  "Title": "我们一起走过的路 · 黄道十二宫",
+  "Thumbnail": "assets/thumbnail.jpg",
+  "Preview": "assets/thumbnail.jpg",
+  "Desc": "开场视频结束后，黄道时钟缓缓浮现；背景循环播放《素颜》。点击 I / VIII 星徽查看双鱼座与狮子座的人物档案。",
+  "Author": "StarSea",
+  "License": "",
+  "Contact": "",
+  "Type": 1,
+  "FileName": "index.html",
+  "Arguments": "",
+  "IsAbsolute": false
+}
